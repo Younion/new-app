@@ -5,7 +5,10 @@
     "express": "^4.18.2",
     "knex": "^2.3.0",
     "node": "^19.1.0",
-    "pg": "^8.8.0"
+    "pg": "^8.8.0",
+    "sequelize": "^6.25.6",
+    "sequelize-views-support": "^1.2.2",
+    "sqlite3": "^5.1.2"
   },
   "name": "server",
   "version": "1.0.0",
@@ -15,5 +18,8 @@
   },
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "@types/cors": "^2.8.12"
+  }
 }
