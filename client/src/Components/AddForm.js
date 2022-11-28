@@ -3,7 +3,6 @@ import { useState } from "react";
 import Form from 'react-bootstrap/Form';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
-
 // import Manufacturer from "./Manufacturer";
 // import SauceName from "./SauceName";
 // import ManufacturerLocation from "./ManufacturerLocation";

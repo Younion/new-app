@@ -65,19 +65,6 @@ function ReviewForm() {
             console.log(record.getId());
           });
         });
-
-      //   fetch('https://api.airtable.com/v0/app4Kq78nyR93DHLC/Tasting%20Form', {
-      //     Authorization: "key5DK4VYamAJtEoK",
-      //     method: 'POST',
-      //     headers: { 
-      //       "Content-Type": "application/json"
-      //     },
-      //     body: JSON.stringify(formSubmit)
-      //   })
-      //   .then(() => {
-      //     // console.log("Post successful")
-      //   })
-      // console.log(formSubmit);
   }
 
   return (
