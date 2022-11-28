@@ -11,8 +11,8 @@ var corsMiddleware = function(req, res, next) {
     next();
 }
 
-const sequelize = new Sequelize('jyh', 'postgres', 'password', {
-    host: 'localhost',
+const sequelize = new Sequelize(process.env.PSQL_SERVER, process.env.PSQL_USER, process.env.PSQL_PASS, {
+    host: process.env.HOST,
     dialect: 'postgres'
 });
 
@@ -45,5 +45,5 @@ app.get('/', async (req, res) => {
         res.json(sauces);
 });
 
-const port = 3000;
+const port = process.env.DEV_PORT;
 app.listen(port, () => console.log(`Server running on port ${port}, http://localhost:${port}`));
