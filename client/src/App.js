@@ -116,14 +116,15 @@ function App() {
           <h1>Hot Sauce Reviews</h1>
         </div>
         <div className="searchBar">
-        <input className="search" placeholder="Search..." onInput={filterCards}/>
-        <div className="list">
-        Search Tips:
-        <ul>
-          <li key="1">Search by Average Rating by typing "Average Rating: [some number here 1-5]"</li>
-          <li key="2">Search by Spiciness Rating by typing "Spiciness Rating: [some number here 1-10]"</li>
-        </ul>
-        </div>
+          <input className="search" placeholder="Search..." onInput={filterCards}/>
+          <div className="list">
+            Search Tips:
+            <ul>
+              <li key="1">Search by Average Rating by typing "Average Rating: [some number here 1-5]"</li>
+              <li key="2">Search by Spiciness Rating by typing "Spiciness Rating: [some number here 1-10]"</li>
+            </ul>
+            <br />
+          </div>
         </div>
         <div className="cards-container">
         {apiData.map(sauce => 
