@@ -1,3 +1,0 @@
-DELETE FROM output_table;
-INSERT INTO output_table
-SELECT * from aggregation
