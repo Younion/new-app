@@ -7,13 +7,13 @@ const SauceCard = ({ sauceData }) => {
                 <Card.Body>
                     <Card.Title>{sauceData.hot_sauce_name}</Card.Title>
                     <Card.Text>
-                    Average Rating: {Math.round(sauceData['avg_overall'])}
+                    Average Rating: {Math.round(sauceData['hot_sauce_overall'])}
                     </Card.Text>
                     <Card.Text>
-                    Spiciness Rating: {Math.round(sauceData['avg_spiciness'])}
+                    Spiciness Rating: {Math.round(sauceData['hot_sauce_spiciness'])}
                     </Card.Text>
                     <Card.Text>
-                    Tastings: {sauceData['number_tastings']}
+                    Tastings: {sauceData['hot_sauce_tastings']}
                     </Card.Text>
                     <Card.Text>
                     {/* Percent Loved: {Math.round(sauceData['love_pct']*100)}% */}

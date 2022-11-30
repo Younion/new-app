@@ -17,7 +17,8 @@ const sequelize = new Sequelize(process.env.PSQL_SERVER, process.env.PSQL_USER, 
 });
 
 // const Jyh = require('./models/JyhModel')(sequelize);
-const Output = require('./models/QueryOutputModel')(sequelize);
+// const Output = require('./models/QueryOutputModel')(sequelize);
+const Test = require('./models/TestPostModel')(sequelize);
 
 async function connectToPg() {
     try {
@@ -40,7 +41,7 @@ app.use(corsMiddleware);
 // app.use(cors());
 
 app.get('/', async (req, res) => { 
-    const sauces = await Output.findAll()
+    const sauces = await Test.findAll()
         console.log(sauces);
         res.json(sauces);
 });
