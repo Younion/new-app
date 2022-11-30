@@ -29,7 +29,7 @@ function ReviewForm() {
         ...flavor, value
       ])
     } else {
-      setFlavor(flavor.filter(( e) => (e !== value)));
+      setFlavor(flavor.filter((e) => (e !== value)));
     }
   };
 
