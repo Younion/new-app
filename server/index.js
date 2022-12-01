@@ -57,7 +57,6 @@ TestTable.create({
         test_sauce: "testsauce5"
     }).then((data) => {
         console.log(data.toJSON());
-        res.send(data);
     }).catch((err) => {
         console.log(err);
     });
