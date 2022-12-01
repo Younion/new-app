@@ -4,12 +4,6 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 
 // Apps
-const app = express();
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-app.use(corsMiddleware);
-// app.use(cors());
-
 const corsMiddleware = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'OPTIONS, GET, PUT, PATCH, POST, DELETE');
@@ -17,6 +11,12 @@ const corsMiddleware = function(req, res, next) {
 
     next();
 }
+
+const app = express();
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(corsMiddleware);
+// app.use(cors());
 
 // Sequelize connect to DB
 const sequelize = new Sequelize(process.env.PSQL_SERVER, process.env.PSQL_USER, process.env.PSQL_PASS, {
@@ -27,7 +27,7 @@ const sequelize = new Sequelize(process.env.PSQL_SERVER, process.env.PSQL_USER, 
 // Models
 // const Jyh = require('./models/JyhModel')(sequelize);
 const Output = require('./models/QueryOutputModel')(sequelize);
-const TestTable = require('./models/TestTable')(sequelize);
+const TestTable = require('./models/TestTableModel')(sequelize);
 
 // Test Connection Authentication
 async function connectToPg() {
@@ -41,15 +41,26 @@ async function connectToPg() {
 
 connectToPg();
 
+// Sync Sequelize
+sequelize.sync();
+
 // GET
 app.get('/', async (req, res) => { 
     const sauces = await Output.findAll()
-        console.log(sauces);
+        // console.log(sauces);
         res.json(sauces);
 });
 
-// Sync Sequelize
-sequelize.sync();
+// POST
+app.post('/post', (req, res) => {
+    TestTable.create({
+        test_name: "testsauce6",
+        test_sauce: "testsauce6"
+    }).then(data => {
+        console.log(data);
+        res.send(data)
+    });
+});
 
 const port = process.env.DEV_PORT;
 app.listen(port, () => console.log(`Server running on port ${port}, http://localhost:${port}`));
