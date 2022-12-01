@@ -52,15 +52,27 @@ app.get('/', async (req, res) => {
 });
 
 // POST
-app.post('/post', (req, res) => {
-    TestTable.create({
-        test_name: "testsauce6",
-        test_sauce: "testsauce6"
-    }).then(data => {
-        console.log(data);
-        res.send(data)
+TestTable.create({
+        test_name: "testsauce5",
+        test_sauce: "testsauce5"
+    }).then((data) => {
+        console.log(data.toJSON());
+        res.send(data);
+    }).catch((err) => {
+        console.log(err);
     });
-});
+
+// app.post('/post', (req, res) => {
+//     return TestTable.create({
+//         test_name: "testsauce7",
+//         test_sauce: "testsauce7"
+//     }).then(data => {
+//         console.log(data.toJSON());
+//         res.send(data)
+//     }).catch((err) => {
+//         console.log(err);
+//     })
+// });
 
 const port = process.env.DEV_PORT;
 app.listen(port, () => console.log(`Server running on port ${port}, http://localhost:${port}`));
