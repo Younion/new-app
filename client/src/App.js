@@ -9,6 +9,8 @@ import TitleSection from "./Components/TitleSection";
 import NavBar from "./Components/NavBar";
 import AddForm from "./Components/AddForm";
 import Footer from "./Components/Footer";
+import TestForm from "./Components/TestForm";
+import formSubmit from "./Components/TestForm";
 
 function App() {
 
@@ -35,6 +37,12 @@ function App() {
             });
     };
     getAPI();
+  }, []);
+
+  useEffect(() => {
+    fetch('http://jyh:3000', {
+      method: 'POST', 
+      body: formSubmit})
   }, []);
 
   // Pagination
@@ -113,7 +121,8 @@ function App() {
           <SauceCard key={sauce.hot_sauce_name} sauceData={sauce} />
         )}
         </div>
-        <ReviewForm />
+        <TestForm />
+        {/* <ReviewForm /> */}
         <AddForm />
         <Footer />
       </div>

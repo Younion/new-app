@@ -52,17 +52,17 @@ app.get('/', async (req, res) => {
 });
 
 // POST
-TestTable.create({
-        test_name: "testsauce5",
-        test_sauce: "testsauce5"
-    }).then((data) => {
-        console.log(data.toJSON());
-    }).catch((err) => {
-        console.log(err);
-    });
+// TestTable.create({
+//         test_name: "testsauce",
+//         test_sauce: "testsauce"
+//     }).then((data) => {
+//         console.log(data.toJSON());
+//     }).catch((err) => {
+//         console.log(err);
+//     });
 
 // app.post('/post', (req, res) => {
-//     return TestTable.create({
+//     TestTable.create({
 //         test_name: "testsauce7",
 //         test_sauce: "testsauce7"
 //     }).then(data => {
