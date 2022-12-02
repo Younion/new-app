@@ -7,11 +7,13 @@ function TestForm() {
   const [presentation, setPresentation] = useState('');
 
   const handleSubmit = (e) => {
-      const formSubmit = {
+    e.preventDefault();
+       const formSubmit = {
             "test_name": sauce,
             "test_sauce": presentation
       }
     console.log(formSubmit);
+    return formSubmit;
   }
 
   return (

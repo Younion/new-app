@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 const { Sequelize } = require('sequelize');
+const { formSubmit } = require('./client/SRC/Components/TestForm')
 
 // Apps
 const corsMiddleware = function(req, res, next) {
@@ -45,11 +46,11 @@ connectToPg();
 sequelize.sync();
 
 // GET
-app.get('/', async (req, res) => { 
-    const sauces = await Output.findAll()
-        // console.log(sauces);
-        res.json(sauces);
-});
+// app.get('/', async (req, res) => { 
+//     const sauces = await Output.findAll()
+//         // console.log(sauces);
+//         res.json(sauces);
+// });
 
 // POST
 // TestTable.create({
@@ -61,17 +62,17 @@ app.get('/', async (req, res) => {
 //         console.log(err);
 //     });
 
-app.post('/', (req, res) => {
-    TestTable.create({
-        test_name: "testsauce7",
-        test_sauce: "testsauce7"
-    }).then(data => {
-        console.log(data.toJSON());
-        res.send(data)
-    }).catch((err) => {
-        console.log(err);
-    })
-});
+// app.post('/', async (req, res) => {
+//     await TestTable.create({
+//         // test_name: "testsauce7",
+//         // test_sauce: "testsauce7"
+//     }).then(data => {
+//         console.log(data.toJSON());
+//         res.send(data)
+//     }).catch((err) => {
+//         console.log(err);
+//     })
+// });
 
 const port = process.env.DEV_PORT;
 app.listen(port, () => console.log(`Server running on port ${port}, http://localhost:${port}`));

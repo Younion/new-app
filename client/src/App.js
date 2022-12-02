@@ -12,8 +12,8 @@ import Footer from "./Components/Footer";
 import TestForm from "./Components/TestForm";
 import formSubmit from "./Components/TestForm";
 
-function App() {
 
+function App() {
   // const [sauces, setSauces] = useState([]);
   // const [names, setNames] = useState([]);
   // const [allSauces, setAllSauces] = useState([]);
@@ -39,11 +39,13 @@ function App() {
     getAPI();
   }, []);
 
+  // Postgres POST
   useEffect(() => {
-    fetch('http://jyh:3000', {
+    const API = 'http://jyh:3000';
+    fetch(API, {
       method: 'POST', 
       body: formSubmit})
-  }, []);
+  }, [formSubmit]);
 
   // Pagination
   
@@ -80,7 +82,6 @@ function App() {
   cards.forEach(cards => {
     observer.observe(cards)
   })
-
 
   // Filter Cards
     const filterCards = event => {
