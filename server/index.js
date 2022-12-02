@@ -2,7 +2,6 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 const { Sequelize } = require('sequelize');
-const { formSubmit } = require('./client/SRC/Components/TestForm')
 
 // Apps
 const corsMiddleware = function(req, res, next) {
