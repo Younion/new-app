@@ -40,12 +40,12 @@ function App() {
   }, []);
 
   // Postgres POST
-  useEffect(() => {
-    const API = 'http://jyh:3000';
-    fetch(API, {
-      method: 'POST', 
-      body: formSubmit})
-  }, [formSubmit]);
+  // useEffect(() => {
+  //   const API = 'http://jyh:3000';
+  //   fetch(API, {
+  //     method: 'POST', 
+  //     body: formSubmit})
+  // }, [formSubmit]);
 
   // Pagination
   
