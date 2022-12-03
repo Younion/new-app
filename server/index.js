@@ -41,15 +41,14 @@ async function connectToPg() {
 
 connectToPg();
 
-// Sync Sequelize
-sequelize.sync();
+
 
 // GET
-// app.get('/', async (req, res) => { 
-//     const sauces = await Output.findAll()
-//         // console.log(sauces);
-//         res.json(sauces);
-// });
+app.get('/', async (req, res) => { 
+    const sauces = await Output.findAll()
+        // console.log(sauces);
+        res.json(sauces);
+});
 
 // POST
 // TestTable.create({
@@ -60,6 +59,7 @@ sequelize.sync();
 //     }).catch((err) => {
 //         console.log(err);
 //     });
+
 
 // app.post('/', async (req, res) => {
 //     await TestTable.create({
@@ -72,6 +72,9 @@ sequelize.sync();
 //         console.log(err);
 //     })
 // });
+
+// Sync Sequelize
+sequelize.sync();
 
 const port = process.env.DEV_PORT;
 app.listen(port, () => console.log(`Server running on port ${port}, http://localhost:${port}`));
