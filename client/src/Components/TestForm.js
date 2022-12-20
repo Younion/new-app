@@ -6,8 +6,7 @@ function TestForm() {
   const [sauce, setSauce] = useState('');
   const [presentation, setPresentation] = useState('');
 
-  const handleSubmit = (e) => { 
-    e.preventDefault();
+  const handleSubmit = () => { 
     fetch('http://jyh:3000', {
       method: 'POST',
       headers: {'Content-Type':'application/json'},

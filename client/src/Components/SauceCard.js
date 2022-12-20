@@ -5,7 +5,7 @@ const SauceCard = ({ sauceData }) => {
         <div className="cards-container">
             <Card className="card">
                 <Card.Body>
-                    <Card.Title>{sauceData.hot_sauce_name}</Card.Title>
+                    <Card.Title>{sauceData.manufacturer_name} - {sauceData.hot_sauce_name}</Card.Title>
                     <Card.Text>
                     Average Rating: {Math.round(sauceData['hot_sauce_overall'])}
                     </Card.Text>

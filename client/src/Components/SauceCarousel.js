@@ -11,7 +11,7 @@ const SauceCarousel = ({ sauceName }) => {
         <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
         {sauceName.map(sauce => 
           <SwiperSlide key={sauce.hot_sauce_name}>
-            <h3>{sauce.hot_sauce_name}</h3>
+            <h3>{sauce.manufacturer_name} - {sauce.hot_sauce_name}</h3>
             <p>Average Rating: {Math.round(sauce['hot_sauce_overall'])}</p>
             <p>Average Spiciness: {Math.round(sauce['hot_sauce_spiciness'])}</p>
             <p>Tastings: {sauce['hot_sauce_tastings']}</p>

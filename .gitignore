@@ -133,3 +133,7 @@ dist
 .pnp.*
 
 snippets/
+notes
+.notes
+client/Notes
+Notes

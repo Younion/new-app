@@ -48,13 +48,26 @@ app.get('/', async (req, res) => {
         res.json(sauces);
 });
 
-app.post('/', (req, res) => {
-    try {
-        console.log('req.body: ', req.body);
-    }catch (err) {
-        console.error(err);
+app.post('/', async (req, res) => {
+    const newSauce = {
+        test_name: "testsauce10",
+        test_sauce: "testsauce10"
     }
-});
+    TestTable.create({newSauce
+        }).then((data) => {
+            console.log(data.toJSON());
+        }).catch((err) => {
+            console.log(err);
+        })
+})
+
+// app.post('/', (req, res) => {
+//     try {
+//         console.log('req.body: ', req.body);
+//     }catch (err) {
+//         console.error(err);
+//     }
+// });
 
 // POST
 // TestTable.create({
@@ -78,9 +91,6 @@ app.post('/', (req, res) => {
 //         console.log(err);
 //     })
 // });
-
-// Sync Sequelize
-sequelize.sync();
 
 const port = process.env.DEV_PORT;
 app.listen(port, () => console.log(`Server running on port ${port}, http://localhost:${port}`));

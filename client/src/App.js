@@ -88,7 +88,8 @@ function App() {
       const value = event.target.value.toLowerCase();
       const filteredData = apiData.filter(
         sauces => (`${sauces['hot_sauce_name']} 
-        ${sauces['']} 
+        ${sauces['']}
+        ${sauces['manufacturer_name']}
         ${"Average Rating: " + Math.round(sauces['avg_overall'])} 
         ${"Spiciness Rating: " + Math.round(sauces['avg_spiciness'])} 
         ${"Percent Loved: " + Math.round('')*100 + "%"}`

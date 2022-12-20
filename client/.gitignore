@@ -133,3 +133,5 @@ dist
 .pnp.*
 
 snippets/
+notes
+.notes
