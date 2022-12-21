@@ -50,8 +50,8 @@ app.get('/', async (req, res) => {
 
 app.post('/', async (req, res) => {
     const newSauce = {
-        test_name: "testsauce10",
-        test_sauce: "testsauce10"
+        test_name: req.body.test_name,
+        test_sauce: req.body.test_sauce
     }
     TestTable.create({newSauce
         }).then((data) => {
