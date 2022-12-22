@@ -49,17 +49,21 @@ app.get('/', async (req, res) => {
 });
 
 app.post('/', async (req, res) => {
-    const newSauce = {
-        test_name: req.body.test_name,
-        test_sauce: req.body.test_sauce
-    }
-    TestTable.create({newSauce
-        }).then((data) => {
-            console.log(data.toJSON());
-        }).catch((err) => {
-            console.log(err);
-        })
-})
+    await Jyh.create({
+        // name: req.body.HotSauceName,
+        presentation: req.body.presentation,
+        viscosityId: req.body.viscosityId,
+        spiciness: req.body.spiciness,
+        Flavor_Notes: req.body.Flavor_Notes,
+        overall_rating: req.body.overall_rating,
+        lovedit: req.body.lovedit,
+        taster_notes: req.body.taster_notes
+    }).then(() => {
+        console.log('req.body: ', req.body);
+    }).catch((err) => {
+        console.log(err);
+    });
+});
 
 // app.post('/', (req, res) => {
 //     try {
