@@ -5,33 +5,41 @@ module.exports = function(sequelize) {
     const Viscosity = sequelize.define('viscosity', {name: {type: DataTypes.STRING, allowNull: false}}, {freezeTableName: true,});
     const HeatSources = sequelize.define('heat_sources', {name: {type: DataTypes.STRING, allowNull: false}}, {freezeTableName: true,});
     const FlavorNotes = sequelize.define('flavor_notes', {name: {type: DataTypes.STRING, allowNull: false}}, {freezeTableName: true,});
-    const Manufacturers = sequelize.define('manufacturers', {name: {type: DataTypes.STRING, allowNull: false}}, {freezeTableName: true,});
-    const HotSauces = sequelize.define('hot_sauces', {name: {type: DataTypes.STRING, allowNull: false}}, {freezeTableName: true,});
-    const TastingForm = sequelize.define('tasting_form', 
-    {
-        spiciness: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            validate: {
-                max: 10,
-                min: 0
+    const Manufacturers = sequelize.define('manufacturers', {name: {type: DataTypes.STRING, allowNull: false}}, {freezeTableName: true,}); // post
+    const HotSauces = sequelize.define('hot_sauces', {name: {type: DataTypes.STRING, allowNull: false}}, {freezeTableName: true,}); // post
+    const TastingForm = sequelize.define('tasting_form', // post
+        {
+            overall_rating: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                validate: {
+                    max: 5,
+                    min: 0
+                    }
+                },
+            spiciness: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                validate: {
+                    max: 10,
+                    min: 0
+                    }
+                },
+            presentation: {
+                type: DataTypes.INTEGER,
+                validate: {
+                    max: 5,
+                    min: 0
+                    }
+                },
+            lovedit: {
+                type: DataTypes.BOOLEAN
+                },
+            taster_notes: {
+                type: DataTypes.TEXT,
                 }
-            },
-        presentation: {
-            type: DataTypes.INTEGER,
-            validate: {
-                max: 5,
-                min: 0
-                }
-            },
-        lovedit: {
-            type: DataTypes.BOOLEAN
-            },
-        taster_notes: {
-            type: DataTypes.TEXT,
-            }
-    },
-    {freezeTableName: true,});
+        },
+        {freezeTableName: true,});
 
     // Associations
         // Location ---> Manufacturers
@@ -68,5 +76,5 @@ module.exports = function(sequelize) {
         // Tasting Form has many flavor notes from a list of flavor notes
         FlavorNotes.belongsToMany(TastingForm, {through: 'tasting_form_flavor_notes'});
 
-    return HotSauces;
+    return TastingForm;
 };

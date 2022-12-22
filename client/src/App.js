@@ -123,8 +123,8 @@ function App() {
           <SauceCard key={sauce.hot_sauce_name} sauceData={sauce} />
         )}
         </div>
-        <TestForm />
-        {/* <ReviewForm /> */}
+        {/* <TestForm /> */}
+        <ReviewForm />
         <AddForm />
         <Footer />
       </div>

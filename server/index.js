@@ -25,9 +25,9 @@ const sequelize = new Sequelize(process.env.PSQL_SERVER, process.env.PSQL_USER, 
 });
 
 // Models
-// const Jyh = require('./models/JyhModel')(sequelize);
+const Jyh = require('./models/JyhModel')(sequelize);
 const Output = require('./models/QueryOutputModel')(sequelize);
-const TestTable = require('./models/TestTableModel')(sequelize);
+// const TestTable = require('./models/TestTableModel')(sequelize);
 
 // Test Connection Authentication
 async function connectToPg() {
@@ -49,15 +49,21 @@ app.get('/', async (req, res) => {
 });
 
 app.post('/', async (req, res) => {
-    await TestTable.create({
-            test_name: "test_name",
-            test_sauce: "test_sauce",
-        }).then((data) => {
-            console.log(data.toJSON());
-        }).catch((err) => {
-            console.log(err);
-        });
+    await Jyh.create({
+        // name: req.body.HotSauceName,
+        presentation: req.body.presentation,
+        viscosityId: req.body.viscosityId,
+        spiciness: req.body.spiciness,
+        Flavor_Notes: req.body.Flavor_Notes,
+        overall_rating: req.body.overall_rating,
+        lovedit: req.body.lovedit,
+        taster_notes: req.body.taster_notes
+    }).then(() => {
+        console.log('req.body: ', req.body);
+    }).catch((err) => {
+        console.log(err);
     });
+});
 
 // app.post('/', (req, res) => {
 //     try {
