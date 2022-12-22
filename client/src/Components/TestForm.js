@@ -6,17 +6,18 @@ function TestForm() {
   const [sauce, setSauce] = useState('');
   const [presentation, setPresentation] = useState('');
 
-  const handleSubmit = () => { 
+  const handleSubmit = (e) => { 
+    e.preventDefault();
     fetch('http://jyh:3000', {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify({
         "test_name": sauce,
-        "test_sauce": presentation
-      })
-      }).then((response) => response)
-        .then((data) => {
-          console.log(data);
+        "test_sauce": presentation,
+      }),
+      }).then((res) => {
+        console.log(res.json());
+        return res.json();
       }).catch((err) => {
           console.log(err.message);
       });

@@ -49,17 +49,15 @@ app.get('/', async (req, res) => {
 });
 
 app.post('/', async (req, res) => {
-    const newSauce = {
-        test_name: "testsauce10",
-        test_sauce: "testsauce10"
-    }
-    TestTable.create({newSauce
+    await TestTable.create({
+            test_name: "test_name",
+            test_sauce: "test_sauce",
         }).then((data) => {
             console.log(data.toJSON());
         }).catch((err) => {
             console.log(err);
-        })
-})
+        });
+    });
 
 // app.post('/', (req, res) => {
 //     try {
