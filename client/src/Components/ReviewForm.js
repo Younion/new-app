@@ -13,7 +13,7 @@ import Form from 'react-bootstrap/Form';
 function ReviewForm() {
   const [sauce, setSauce] = useState('');
   const [presentation, setPresentation] = useState('');
-  const [viscocity, setViscocity] = useState('');
+  const [viscosity, setViscosity] = useState('');
   const [spiciness, setSpiciness] = useState('');
   const [flavor, setFlavor] = useState([]);
   const [overall, setOverall] = useState('');
@@ -37,35 +37,58 @@ function ReviewForm() {
     setLoved(!loved);
   }
 
-  const handleSubmit = (e) => {
-      e.preventDefault();
-      const formSubmit = {
-          "fields": {
-            "Hot Sauce Name": sauce,
-            "Presentation": presentation,
-            "Viscosity": viscocity,
-            "Spiciness Rating": spiciness,
-            "Flavor Notes": flavor,
-            "Overall Rating": overall,
-            "Loved It?": loved,
-            "Taster Notes": notes
-          }
-        }
+  // const handleSubmit = (e) => {
+  //     e.preventDefault();
+  //     const formSubmit = {
+  //         "fields": {
+  //           "Hot Sauce Name": sauce,
+  //           "Presentation": presentation,
+  //           "Viscosity": viscocity,
+  //           "Spiciness Rating": spiciness,
+  //           "Flavor Notes": flavor,
+  //           "Overall Rating": overall,
+  //           "Loved It?": loved,
+  //           "Taster Notes": notes
+  //         }
+  //       }
 
-        var Airtable = require('airtable');
-        var base = new Airtable({apiKey: process.env.REACT_APP_API_KEY}).base(process.env.REACT_APP_BASE);
+  //       var Airtable = require('airtable');
+  //       var base = new Airtable({apiKey: process.env.REACT_APP_API_KEY}).base(process.env.REACT_APP_BASE);
 
-        base('Tasting Form').create([formSubmit
-        ], { typecast: true }, function(err, records) {
-          if (err) {
-            console.error(err);
-            return;
-          }
-          records.forEach(function (record) {
-            console.log(record.getId());
-          });
-        });
-  }
+  //       base('Tasting Form').create([formSubmit
+  //       ], { typecast: true }, function(err, records) {
+  //         if (err) {
+  //           console.error(err);
+  //           return;
+  //         }
+  //         records.forEach(function (record) {
+  //           console.log(record.getId());
+  //         });
+  //       });
+  // }
+
+  const handleSubmit = (e) => { 
+    e.preventDefault();
+    fetch('http://jyh:3000', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+          // "HotSauceName": sauce,
+          "presentation": presentation,
+          "viscosityId": viscosity,
+          "spiciness": spiciness,
+          "Flavor_Notes": flavor,
+          "overall_rating": overall,
+          "lovedit": loved,
+          "taster_notes": notes
+      }),
+      }).then((res) => {
+        console.log(res.json());
+        return res.json();
+      }).catch((err) => {
+          console.log(err.message);
+      });
+    };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -145,46 +168,46 @@ function ReviewForm() {
           {['radio'].map((type) => (
             <div key={`default-${type}`} className="mb-3">
                 <Form.Check 
-                name="viscocity"
+                name="viscosity"
                 type={type}
                 id={`default-${type}`}
                 label="Thin"
-                onChange={(e) => setViscocity("Thin")}
+                onChange={(e) => setViscosity(1)}
               />
                 <Form.Check 
-                name="viscocity"
+                name="viscosity"
                 type={type}
                 id={`default-${type}`}
                 label="Thin, with chunks"
-                onChange={(e) => setViscocity("Thin, with chunks")}
+                onChange={(e) => setViscosity(2)}
               />
                 <Form.Check 
-                name="viscocity"
+                name="viscosity"
                 type={type}
                 id={`default-${type}`}
                 label="Average"
-                onChange={(e) => setViscocity("Average")}
+                onChange={(e) => setViscosity(3)}
               />
                 <Form.Check 
-                name="viscocity"
+                name="viscosity"
                 type={type}
                 id={`default-${type}`}
                 label="Average, with chunks"
-                onChange={(e) => setViscocity("Average, with chunks")}
+                onChange={(e) => setViscosity(4)}
               />
                 <Form.Check 
-                name="viscocity"
+                name="viscosity"
                 type={type}
                 id={`default-${type}`}
                 label="Thick"
-                onChange={(e) => setViscocity("Thick")}
+                onChange={(e) => setViscosity(5)}
               />
                 <Form.Check 
-                name="viscocity"
+                name="viscosity"
                 type={type}
                 id={`default-${type}`}
                 label="Thick, with chunks"
-                onChange={(e) => setViscocity("Thick, with chunks")}
+                onChange={(e) => setViscosity(6)}
               />
             </div>
           ))}
