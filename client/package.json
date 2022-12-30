@@ -20,6 +20,7 @@
     "react-icons": "^4.6.0",
     "react-paginate": "^8.1.4",
     "react-scripts": "5.0.1",
+    "react-select": "^5.7.0",
     "sequelize": "^6.26.0",
     "sqlite3": "^5.1.2",
     "swiper": "^8.4.4",

@@ -67,10 +67,6 @@ module.exports = function(sequelize) {
         HotSauces.hasMany(TastingForm);
         TastingForm.belongsTo(HotSauces);
 
-        // Tasting Form ---> Hot Sauces
-        // One Tasting Form has one Hot Sauce from a list of Hot Sauces
-        HotSauces.hasMany(TastingForm);
-        TastingForm.belongsTo(HotSauces);
 
         // Tasting Form ---> Flavor Notes
         // Tasting Form has many flavor notes from a list of flavor notes

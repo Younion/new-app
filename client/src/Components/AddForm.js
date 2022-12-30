@@ -23,7 +23,7 @@ function AddForm() {
         ...heat, value
       ])
     } else {
-      setHeat(heat.filter(( e) => (e !== value)));
+      setHeat(heat.filter((e) => (e !== value)));
     }
   };
 
@@ -106,7 +106,7 @@ function AddForm() {
           <DropdownButton 
             variant="dark"
             id="dropdown-basic-button" 
-            title="Dropdown Button" 
+            title={location} 
             value={location} 
             onSelect={handleDropDown}
             >
@@ -115,9 +115,12 @@ function AddForm() {
               <Dropdown.Item eventKey="International">International</Dropdown.Item>
           </DropdownButton>
           <br />
-          <p>You selected: {location}</p><br />
         
         <h2>Heat Sources</h2>
+          Usually found in the ingredients on the bottle.
+        <br />
+        <br />
+
           {['checkbox'].map((type) => (
             <div key={`default-${type}`} className="mb-3">
                 <Form.Check 
