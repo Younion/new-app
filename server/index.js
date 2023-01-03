@@ -49,7 +49,7 @@ app.get('/', async (req, res) => {
         res.json(sauces);
 });
 
-// POST to Postgres using Sequelize
+// POSTs to Postgres using Sequelize
 // POST to ReviewForm
 app.post('/review', async (req, res) => {
     await Jyh.create({  // .create is a Sequelize method
