@@ -27,32 +27,41 @@ function AddForm() {
     }
   };
 
-  const handleSubmit = (e) => {
-      e.preventDefault();
-      const formSubmit = {
-        "fields": {
-          "Manufacturer": manufacturer,
-          "Sauce Name": sauce,
-          "Location": location,
-          "Heat Sources": heat
-        }
-      }
-
-      var Airtable = require('airtable');
-      var base = new Airtable({apiKey: process.env.REACT_APP_API_KEY}).base(process.env.REACT_APP_BASE);
-
-      base('Hot Sauces').create([formSubmit
-      ], { typecast: true }, function(err, records) {
-        if (err) {
-          console.error(err);
-          return;
-        }
-        records.forEach(function (record) {
-          console.log(record.getId());
-        });
+  // Form Submit Handler
+  const handleSubmit = (e) => { 
+    e.preventDefault();
+    fetch('http://jyh:3000', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        "Manufacturer": manufacturer,
+        // "SauceName": sauce,
+        // "Location": location,
+        // "HeatSources": heat
+      }),
+      }).then((res) => {
+          console.log(res.json());
+          return res.json();
+      }).catch((err) => {
+          console.log(err.message);
       });
-      console.log(formSubmit)
-    }
+  };
+
+    //   var Airtable = require('airtable');
+    //   var base = new Airtable({apiKey: process.env.REACT_APP_API_KEY}).base(process.env.REACT_APP_BASE);
+
+    //   base('Hot Sauces').create([formSubmit
+    //   ], { typecast: true }, function(err, records) {
+    //     if (err) {
+    //       console.error(err);
+    //       return;
+    //     }
+    //     records.forEach(function (record) {
+    //       console.log(record.getId());
+    //     });
+    //   });
+    //   console.log(formSubmit)
+    // }
 
     const handleDropDown = (e) => {
       setLocation(e)
@@ -61,7 +70,7 @@ function AddForm() {
   
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form id="addForm" action="/add" onSubmit={handleSubmit}>
       <div className="white-section" id="addASauce">
         <div className="container-fluid">
           <h2>Add a Sauce</h2><br />

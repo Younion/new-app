@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 const { Sequelize } = require('sequelize');
+const AddManModel = require('./models/AddManModel');
 
 // Apps
 const corsMiddleware = function(req, res, next) {
@@ -26,6 +27,7 @@ const sequelize = new Sequelize(process.env.PSQL_SERVER, process.env.PSQL_USER, 
 // Sequelize Models
 const Jyh = require('./models/JyhModel')(sequelize);
 const Output = require('./models/QueryOutputModel')(sequelize);
+const AddMan = require('./models/AddManModel')(sequelize);
 // const TestTable = require('./models/TestTableModel')(sequelize);
 
 // Test Connection Authentication
@@ -48,8 +50,9 @@ app.get('/', async (req, res) => {
 });
 
 // POST to Postgres using Sequelize
-app.post('/', async (req, res) => {
-    await Jyh.create({ // .create is a Sequelize method
+// POST to ReviewForm
+app.post('/review', async (req, res) => {
+    await Jyh.create({  // .create is a Sequelize method
         hotSauceId: req.body.hotSauceId,
         presentation: req.body.presentation,
         viscosityId: req.body.viscosityId,
@@ -64,6 +67,20 @@ app.post('/', async (req, res) => {
         console.log(err);
     });
 });
+
+// Post to AddForm
+app.post('/add', async (req, res) => {
+    await AddMan.create({  // .create is a Sequelize method
+        name: req.body.Manufacturer,
+        // name: req.body.SauceName,
+        // location: req.body.location,
+        // HeatSources: req.body.HeatSources
+    }).then(() => {
+        console.log('req.body: ', req.body);
+    }).catch((err) => {
+        console.log(err);
+    });
+})
 
 const port = process.env.DEV_PORT;
 app.listen(port, () => console.log(`Server running on port ${port}, http://localhost:${port}`));

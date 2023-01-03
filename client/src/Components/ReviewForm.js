@@ -105,7 +105,7 @@ function ReviewForm( {sauceName} ) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form id="reviewForm" action='/review' onSubmit={handleSubmit}>
       <div className="color-section" id="reviewASauce">
         <div className="container-fluid">
           <h2>Review a Sauce</h2><br />

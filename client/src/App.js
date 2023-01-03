@@ -88,6 +88,8 @@ function App() {
       setApiData(filteredData);
   }
   
+  const percentage = 66;
+
   // Render Page
   return (
     <div className="App">
