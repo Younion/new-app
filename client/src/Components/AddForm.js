@@ -65,7 +65,6 @@ function AddForm() {
 
     const handleDropDown = (e) => {
       setLocation(e)
-  
     };
   
 

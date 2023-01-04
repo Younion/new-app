@@ -51,7 +51,7 @@ app.get('/', async (req, res) => {
 
 // POSTs to Postgres using Sequelize
 // POST to ReviewForm
-app.post('/review', async (req, res) => {
+app.post('/', async (req, res) => {
     await Jyh.create({  // .create is a Sequelize method
         hotSauceId: req.body.hotSauceId,
         presentation: req.body.presentation,
@@ -66,21 +66,22 @@ app.post('/review', async (req, res) => {
     }).catch((err) => {
         console.log(err);
     });
+    res.json(AddMan);
 });
 
 // Post to AddForm
-app.post('/add', async (req, res) => {
-    await AddMan.create({  // .create is a Sequelize method
-        name: req.body.Manufacturer,
-        // name: req.body.SauceName,
-        // location: req.body.location,
-        // HeatSources: req.body.HeatSources
-    }).then(() => {
-        console.log('req.body: ', req.body);
-    }).catch((err) => {
-        console.log(err);
-    });
-})
+// app.post('/add', async (req, res) => {
+//     await AddMan.create({  // .create is a Sequelize method
+//         name: req.body.Manufacturer,
+//         // name: req.body.SauceName,
+//         // location: req.body.location,
+//         // HeatSources: req.body.HeatSources
+//     }).then(() => {
+//         console.log('req.body: ', req.body);
+//     }).catch((err) => {
+//         console.log(err);
+//     });
+// })
 
 const port = process.env.DEV_PORT;
 app.listen(port, () => console.log(`Server running on port ${port}, http://localhost:${port}`));

@@ -72,11 +72,12 @@ function ReviewForm( {sauceName} ) {
           "lovedit": loved,
           "taster_notes": notes
       }),
-      }).then((res) => {
-          console.log(res.json());
+      }).then(res => {
           return res.json();
-      }).catch((err) => {
-          console.log(err.message);
+      }).then(data => {
+          console.log(data);
+      }).catch(err => {
+          console.log(err);
       });
   };
 
@@ -105,7 +106,7 @@ function ReviewForm( {sauceName} ) {
   }
 
   return (
-    <form id="reviewForm" action='/review' onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <div className="color-section" id="reviewASauce">
         <div className="container-fluid">
           <h2>Review a Sauce</h2><br />
