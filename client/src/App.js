@@ -19,7 +19,8 @@ function App() {
   // const [allSauces, setAllSauces] = useState([]);
   const [apiData, setApiData] = useState([]);
   const [loading, setLoading] = useState(true);
-  
+  const [namesData, setNamesData] = useState([]);
+
 
   // Postgres GET
   useEffect(() => {
@@ -38,6 +39,22 @@ function App() {
     };
     getAPI();
   }, []);
+
+  // useEffect(() => {
+  //   const getNames = () => {
+  //       const API = 'http://jyh:3000';
+  //       fetch(API)
+  //           .then((response) => {
+  //               // console.log(response);
+  //               return response.json();
+  //           })
+  //           .then((data) => {
+  //               console.log(data);
+  //               setNamesData(data);
+  //           });
+  //   };
+  //   getNames();
+  // }, []);
 
   // Pagination
   
@@ -118,7 +135,7 @@ function App() {
       </div>
       {/* <TestForm /> */}
       <ReviewForm sauceName={apiData} />
-      <AddForm />
+      <AddForm sauceLocation={apiData}/>
       <Footer />
     </div>
   );

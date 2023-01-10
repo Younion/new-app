@@ -3,12 +3,13 @@ import { useState } from "react";
 import Form from 'react-bootstrap/Form';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
+import Select from 'react-select'
 // import Manufacturer from "./Manufacturer";
 // import SauceName from "./SauceName";
 // import ManufacturerLocation from "./ManufacturerLocation";
 // import HeatSources from "./HeatSources";
 
-function AddForm() {
+function AddForm( {sauceLocation} ) {
   const [manufacturer, setManufacturer] = useState('');
   const [sauce, setSauce] = useState('');
   const [location, setLocation] = useState('');
@@ -30,14 +31,14 @@ function AddForm() {
   // Form Submit Handler
   const handleSubmit = (e) => { 
     e.preventDefault();
-    fetch('http://jyh:3000', {
+    fetch('http://jyh:3000/add', {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify({
         "Manufacturer": manufacturer,
-        // "SauceName": sauce,
-        // "Location": location,
-        // "HeatSources": heat
+        "SauceName": sauce,
+        "locatedId": location,
+        "HeatSources": heat
       }),
       }).then((res) => {
           console.log(res.json());
@@ -65,8 +66,40 @@ function AddForm() {
 
     const handleDropDown = (e) => {
       setLocation(e)
+      console.log(e)
     };
   
+  // react-select objects
+  const Names = [{
+    id: 1,
+    location: "Alabama"
+  }, {
+    id: 2,
+    location: "Alaska"
+  }, {
+    id: 3,
+    location: "Arizona"
+  }, {
+    id: 4,
+    location: "Foreign"
+  },
+]
+  
+
+    const customStyles = {
+    option: provided => ({
+      ...provided,
+      color: 'black'
+    }),
+    control: provided => ({
+      ...provided,
+      color: 'black'
+    }),
+    singleValue: provided => ({
+      ...provided,
+      color: 'black'
+    })
+  }
 
   return (
     <form id="addForm" action="/add" onSubmit={handleSubmit}>
@@ -111,16 +144,28 @@ function AddForm() {
 
         <h2>Manufacturer Location:</h2><br />
         
+
+          {/* <Select // react-select used here
+              options={Names}
+              onChange={(Names) => setLocation(Names.value)}
+              styles={
+                customStyles
+              }
+            /> */}
+
           <DropdownButton 
             variant="dark"
             id="dropdown-basic-button" 
-            title={location} 
+            title="Select Location"
             value={location} 
             onSelect={handleDropDown}
             >
-              <Dropdown.Item eventKey="Local (Colorado)">Local (Colorado)</Dropdown.Item>
-              <Dropdown.Item eventKey="Domestic">Domestic</Dropdown.Item>
-              <Dropdown.Item eventKey="International">International</Dropdown.Item>
+            {Names.map(names => (
+              <Dropdown.Item key={names.id} eventKey={names.id}>{names.location}</Dropdown.Item>
+            ))}
+              {/* <Dropdown.Item eventKey={Names.value} id="Local (Colorado)">{Names.key}</Dropdown.Item>
+              <Dropdown.Item eventKey="2" id="Domestic">Domestic</Dropdown.Item>
+              <Dropdown.Item eventKey="3" id="Foreign">Foreign</Dropdown.Item> */}
           </DropdownButton>
           <br />
         

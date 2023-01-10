@@ -35,7 +35,7 @@ function ReviewForm( {sauceName} ) {
     }
   };
 
-  // From Switch Handler
+  // Form Switch Handler
   const handleSwitch = () => {
     setLoved(!loved);
   }
@@ -59,7 +59,7 @@ function ReviewForm( {sauceName} ) {
   // Form Submit Handler
   const handleSubmit = (e) => { 
     e.preventDefault();
-    fetch('http://jyh:3000', {
+    fetch('http://jyh:3000/review', {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify({

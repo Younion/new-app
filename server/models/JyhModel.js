@@ -5,9 +5,9 @@ module.exports = function(sequelize) {
     const Viscosity = sequelize.define('viscosity', {name: {type: DataTypes.STRING, allowNull: false}}, {freezeTableName: true,});
     const HeatSources = sequelize.define('heat_sources', {name: {type: DataTypes.STRING, allowNull: false}}, {freezeTableName: true,});
     const FlavorNotes = sequelize.define('flavor_notes', {name: {type: DataTypes.STRING, allowNull: false}}, {freezeTableName: true,});
-    const Manufacturers = sequelize.define('manufacturers', {name: {type: DataTypes.STRING, allowNull: false}}, {freezeTableName: true,}); // post
-    const HotSauces = sequelize.define('hot_sauces', {name: {type: DataTypes.STRING, allowNull: false}}, {freezeTableName: true,}); // post
-    const TastingForm = sequelize.define('tasting_form', // post
+    const Manufacturers = sequelize.define('manufacturers', {name: {type: DataTypes.STRING, allowNull: false}}, {freezeTableName: true,});
+    const HotSauces = sequelize.define('hot_sauces', {name: {type: DataTypes.STRING, allowNull: false}}, {freezeTableName: true,});
+    const TastingForm = sequelize.define('tasting_form',
         {
             overall_rating: {
                 type: DataTypes.INTEGER,
